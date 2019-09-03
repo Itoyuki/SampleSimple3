@@ -55,6 +55,22 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_RECOG_TIME = "recog_time";
     /**
+     * function：”どこで”を通知する
+     */
+    public static final String FUNC_RECOG_PLACE = "recog_place";
+    /**
+     * function：”誰が”を通知する
+     */
+    public static final String FUNC_RECOG_PEOPLE = "recog_people";
+    /**
+     * function：”何を”を通知する
+     */
+    public static final String FUNC_RECOG_OBJECT = "recog_object";
+    /**
+     * function：”どうした”を通知する
+     */
+    public static final String FUNC_RECOG_EVENT = "recog_event";
+    /**
      * accost名：accostテスト発話実行.
      */
     public static final String ACC_ACCOST =  ScenarioDefinitions.PACKAGE + ".accost.t1";
