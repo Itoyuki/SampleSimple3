@@ -237,33 +237,128 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
             case ScenarioDefinitions.FUNC_RECOG_TALK:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
                 final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
-                final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
-                final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
-                final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
-                final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
                             final ContentValues values = new ContentValues();
                             values.put("EVENTNAME",eventname);
-                            values.put("TIME",time);
-                            values.put("PLACE",place);
-                            values.put("PEOPLE",people);
-                            values.put("OBJECT",object);
-                            values.put("EVENT",event);
-                            sdb.insert("testdb", null, values);
-                            final String[] columns = new String[]{"EVENTNAME","TIME","PLACE","PEOPLE","OBJECT","EVENT"};
-                            Cursor c = sdbr.query("testdb",columns,null,null,null,null,null);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"EVENTNAME"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
                             while (c.moveToNext()) {
                                 String moji1 = c.getString(c.getColumnIndex("EVENTNAME"));
+                                ((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ moji1);
+                            }
+
+                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_TIME:
+                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            final ContentValues values = new ContentValues();
+                            values.put("TIME",time);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"TIME"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
+                            while (c.moveToNext()) {
                                 String moji2 = c.getString(c.getColumnIndex("TIME"));
+                                ((TextView) findViewById(R.id.recog_time_text)).setText("Lvcsr:"+ moji2);
+                            }
+
+                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_PLACE:
+                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            final ContentValues values = new ContentValues();
+                            values.put("PLACE",place);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"PLACE"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
+                            while (c.moveToNext()) {
                                 String moji3 = c.getString(c.getColumnIndex("PLACE"));
+                                ((TextView) findViewById(R.id.recog_place_text)).setText("Lvcsr:"+ moji3);
+                            }
+
+                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_PEOPLE:
+                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            final ContentValues values = new ContentValues();
+                            values.put("PEOPLE",people);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"PEOPLE"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
+                            while (c.moveToNext()) {
                                 String moji4 = c.getString(c.getColumnIndex("PEOPLE"));
+                                ((TextView) findViewById(R.id.recog_people_text)).setText("Lvcsr:"+ moji4);
+                            }
+
+                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_OBJECT:
+                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            final ContentValues values = new ContentValues();
+                            values.put("OBJECT",object);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"OBJECT"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
+                            while (c.moveToNext()) {
                                 String moji5 = c.getString(c.getColumnIndex("OBJECT"));
+                                ((TextView) findViewById(R.id.recog_object_text)).setText("Lvcsr:"+ moji5);
+                            }
+
+                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_EVENT:
+                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            final ContentValues values = new ContentValues();
+                            values.put("EVENT",event);
+                            sdb.insert("talk", null, values);
+                            final String[] columns = new String[]{"EVENT"};
+                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
+                            while (c.moveToNext()) {
                                 String moji6 = c.getString(c.getColumnIndex("EVENT"));
-                                ((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+ moji1 + moji2 + moji3 + moji4 + moji5 + moji6);
+                                ((TextView) findViewById(R.id.recog_event_text)).setText("Lvcsr:"+ moji6);
                             }
 
                             //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
