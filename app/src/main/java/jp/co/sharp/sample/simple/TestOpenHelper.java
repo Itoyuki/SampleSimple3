@@ -10,7 +10,7 @@ public class TestOpenHelper extends SQLiteOpenHelper{
 
     //データベース情報を変数に格納
     private static final String DATABASE_NAME = "TestDB.db";
-    private static final String TABLE_NAME = "testdb";
+    private static final String TABLE_NAME = "talk";
     private static final String _ID = "_id";
 
     public TestOpenHelper(Context context){
