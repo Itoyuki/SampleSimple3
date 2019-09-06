@@ -106,7 +106,7 @@
                     <data key="Lvcsr_Object" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
-            <next href="#t13" type="default"/>
+            <next href="#t14" type="default"/>
         </topic>
         <!-- どうしたを入れる -->
         <topic id="t14" listen="true">
