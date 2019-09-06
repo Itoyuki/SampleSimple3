@@ -38,11 +38,42 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:text="@string/default_text"
-                android:id="@+id/recog_text"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="1000px" />
+                android:id="@+id/recog_eventname_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/eventname_text"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/recog_time_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/time_text"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/recog_place_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/place_text"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/recog_people_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/people_text"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/recog_object_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/object_text"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/recog_event_text"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:text="@string/event_text"
+                android:textSize="24sp" />
 
             <View
                 android:layout_width="match_parent"
