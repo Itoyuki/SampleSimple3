@@ -51,7 +51,7 @@
         <topic id="t6" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
-                <control function="recog_talk" target="jp.co.sharp.sample.simple">
+                <control function="recog_time" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Time" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
@@ -68,7 +68,7 @@
         <topic id="t8" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
-                <control function="recog_talk" target="jp.co.sharp.sample.simple">
+                <control function="recog_place" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Place" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
@@ -85,7 +85,7 @@
         <topic id="t10" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
-                <control function="recog_talk" target="jp.co.sharp.sample.simple">
+                <control function="recog_people" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_People" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
@@ -102,7 +102,7 @@
         <topic id="t12" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
-                <control function="recog_talk" target="jp.co.sharp.sample.simple">
+                <control function="recog_object" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Object" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
@@ -120,7 +120,7 @@
             <action index="1">
                 <speech>喋った内容を、背中の画面に表示したよ。確認してみてね</speech>
                 <behavior id="assign" type="normal"/>
-                <control function="recog_talk" target="jp.co.sharp.sample.simple">
+                <control function="recog_event" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Event" value="${Lvcsr:Basic}"/>
                 </control>
             </action>
