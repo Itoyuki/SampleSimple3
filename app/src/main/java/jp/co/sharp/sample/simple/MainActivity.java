@@ -230,18 +230,27 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
 
         final SQLiteDatabase sdb = dbhelper.getWritableDatabase();
         final SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+        final ContentValues values = new ContentValues();
+
+        final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+        final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
+        final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
+        final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
+        final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
+        final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
+
         switch (command) {
             case ScenarioDefinitions.FUNC_END_APP:
                 finish();
                 break;
             case ScenarioDefinitions.FUNC_RECOG_TALK:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
+                //final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("EVENTNAME",eventname);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"EVENTNAME"};
@@ -258,12 +267,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 break;
             case ScenarioDefinitions.FUNC_RECOG_TIME:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
+                //final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("TIME",time);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"TIME"};
@@ -280,12 +289,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 break;
             case ScenarioDefinitions.FUNC_RECOG_PLACE:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
+                //final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("PLACE",place);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"PLACE"};
@@ -302,12 +311,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 break;
             case ScenarioDefinitions.FUNC_RECOG_PEOPLE:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
+                //final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("PEOPLE",people);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"PEOPLE"};
@@ -324,12 +333,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 break;
             case ScenarioDefinitions.FUNC_RECOG_OBJECT:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
+                //final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("OBJECT",object);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"OBJECT"};
@@ -346,12 +355,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 break;
             case ScenarioDefinitions.FUNC_RECOG_EVENT:
                 //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
+                //final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(!isFinishing()) {
-                            final ContentValues values = new ContentValues();
+                            //final ContentValues values = new ContentValues();
                             values.put("EVENT",event);
                             sdb.insert("talk", null, values);
                             final String[] columns = new String[]{"EVENT"};
@@ -369,6 +378,20 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
             default:
                 break;
         }
+
+        System.out.println("1:" + eventname);
+        //System.out.println(eventname);
+        System.out.println("2:" + time);
+        //System.out.println(time);
+        System.out.println("3:" + place);
+        //System.out.println(place);
+        System.out.println("4:" + people);
+        //System.out.println(people);
+        System.out.println("5:" + object);
+        //System.out.println(object);
+        System.out.println("6:" + event);
+        //System.out.println(event);
+
     }
 
     /**
