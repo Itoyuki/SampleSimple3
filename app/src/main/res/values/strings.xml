@@ -5,7 +5,7 @@
     <string name="default_mode_text">アイコンタップで起動したよ</string>
 
     <string name="recog_label_text">「今から喋るよ」って言ってね</string>
-    <string name="eventname_text">--できごと名--</string>
+    <string name="eventname_text">--Data--</string>
     <string name="time_text">--いつ--</string>
     <string name="place_text">--どこで--</string>
     <string name="people_text">--だれが--</string>
