@@ -71,6 +71,10 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_RECOG_EVENT = "recog_event";
     /**
+     * function：結果を表示
+     */
+    public static final String FUNC_VIEW_RESULT = "view_result";
+    /**
      * accost名：accostテスト発話実行.
      */
     public static final String ACC_ACCOST =  ScenarioDefinitions.PACKAGE + ".accost.t1";
