@@ -117,11 +117,18 @@
         </topic>
         <topic id="t15" listen="false">
             <action index="1">
-                <speech>喋った内容を、背中の画面に表示したよ。確認してみてね</speech>
                 <behavior id="assign" type="normal"/>
                 <control function="recog_event" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Event" value="${Lvcsr:Basic}"/>
                 </control>
+            </action>
+            <next href="#t16" type="default"/>
+        </topic>
+        <topic id="t16" listen="false">
+            <action index="1">
+                <speech>喋った内容を、背中の画面に表示したよ。確認してみてね</speech>
+                <behavior id="assign" type="normal"/>
+                <control function="view_result" target="jp.co.sharp.sample.simple"/>
             </action>
         </topic>
     </body>
