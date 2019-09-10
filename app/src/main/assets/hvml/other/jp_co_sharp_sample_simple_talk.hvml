@@ -11,7 +11,7 @@
     <body>
         <topic id="t1" listen="false">
             <action index="1">
-                <speech>目が黄色になったら喋ってね</speech>
+                <speech>出来事の名前、年号、場所、人物、何を、どうした、について順番に教えてね。</speech>
                 <behavior id="assign" type="normal"/>
             </action>
             <next href="#t2" type="default"/>
@@ -32,7 +32,6 @@
         </topic>
         <topic id="t4" listen="false">
             <action index="1">
-                
                 <behavior id="assign" type="normal"/>
                 <control function="recog_talk" target="jp.co.sharp.sample.simple">
                     <data key="Lvcsr_Basic" value="${Lvcsr:Basic}"/>
