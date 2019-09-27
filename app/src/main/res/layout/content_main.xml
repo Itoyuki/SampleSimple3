@@ -40,7 +40,7 @@
             <TextView
                 android:id="@+id/recog_eventname_text"
                 android:layout_width="match_parent"
-                android:layout_height="1000px"
+                android:layout_height="10000px"
                 android:text="@string/eventname_text"
                 android:textSize="24sp" />
             <TextView

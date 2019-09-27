@@ -7,56 +7,82 @@ import android.widget.TextView;
 
 public class DataManagement {
     //データを管理するクラス
-    String eventname;
-    String time;
-    String place;
-    String people;
-    String object;
-    String event;
+    private String eventname;
+    private String time;
+    private String place;
+    private String people;
+    private String object;
+    private String event;
 
+    /*
     public DataManagement(){
-        eventname = "江戸時代";
-        time = "1603年";
-        place = "江戸";
-        people = "徳川家康";
-        object = "江戸幕府";
-        event = "開いた";
+        eventname = "";
+        time = "";
+        place = "";
+        people = "";
+        object = "";
+        event = "";
     }
+    */
 
     //更新
     public void setEventname(String data){
-        eventname = data;
+        this.eventname = data;
     }
 
     public void setTime(String data){
-        time = data;
+        this.time = data;
     }
 
     public void setPlace(String data){
-        place = data;
+        this.place = data;
     }
 
     public void setPeople(String data){
-        people = data;
+        this.people = data;
     }
 
     public void setObject(String data){
-        object = data;
+        this.object = data;
     }
 
     public void setEvent(String data){
-        event = data;
+        this.event = data;
+    }
+
+    public String getEventname(){
+        return this.eventname;
+    }
+
+    public String getTime(){
+        return this.time;
+    }
+
+    public String getPlace(){
+        return this.place;
+    }
+
+    public String getPeople(){
+        return this.people;
+    }
+
+    public String getObject(){
+        return this.object;
+    }
+
+    public String getEvent(){
+        return this.event;
     }
 
     //DBへデータを挿入
     public void insertDB(SQLiteDatabase sdb){
         ContentValues values = new ContentValues();
-        values.put("EVENTNAME",eventname);
-        values.put("TIME",time);
-        values.put("PLACE",place);
-        values.put("PEOPLE",people);
-        values.put("OBJECT",object);
-        values.put("EVENT",event);
+        values.put("EVENTNAME",this.eventname);
+        values.put("TIME",this.time);
+        values.put("PLACE",this.place);
+        values.put("PEOPLE",this.people);
+        values.put("OBJECT",this.object);
+        values.put("EVENT",this.event);
         sdb.insert("talk", null, values);
     }
 
