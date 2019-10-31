@@ -460,6 +460,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             ((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ stringBuilder.toString() + "。");
                             //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:1603年に江戸で徳川家康が江戸幕府を開いた。");
                             //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:江戸で徳川家康が江戸幕府を開いたのは何年でしょうか。");
+                            //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
+                            ((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
                         }
                     }
                 });
