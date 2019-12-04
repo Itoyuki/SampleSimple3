@@ -79,6 +79,10 @@ public class ScenarioDefinitions {
      */
     public static final String ACC_ACCOST =  ScenarioDefinitions.PACKAGE + ".accost.t1";
     /**
+     * 暗記項目発話実行.
+     */
+    public static final String ACC_MEMORIZE =  ScenarioDefinitions.PACKAGE + ".accost.t2";
+    /**
      * accost名：resolveテスト発話実行.
      */
     public static final String ACC_RESOLVE =  ScenarioDefinitions.PACKAGE + ".variable.t1";

@@ -6,7 +6,7 @@
         <scene value="jp.co.sharp.sample.simple.scene_common"/>
         <version value="1.0"/>
         <tool_version>1.00</tool_version>
-        <situation priority="75" topic_id="t1" trigger="user-word">イマカラ near ${Lvcsr:Kana}</situation>
+        <situation priority="75" topic_id="t1" trigger="user-word">シャベルヨ near ${Lvcsr:Kana}</situation>
     </head>
     <body>
         <topic id="t1" listen="false">
@@ -18,17 +18,18 @@
         </topic>
         <!-- できごと名を入れる -->
         <topic id="t2" listen="true">
-            <a href="#t4" type="default"/>
             <a href="#t3">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
+            <a href="#t4" type="default"/>
             <next href="#t3" type="default"/>
         </topic>
         <topic id="t3" listen="false">
             <action index="1">
-                <speech>よくわからなかったよ。またお話ししてね。</speech>
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
                 <behavior id="assign" type="normal"/>
             </action>
+            <next href="#t2" type="default"/>
         </topic>
         <topic id="t4" listen="false">
             <action index="1">
@@ -41,11 +42,18 @@
         </topic>
         <!-- いつを入れる -->
         <topic id="t5" listen="true">
-            <a href="#t6" type="default"/>
-            <a href="#t3">
+            <a href="#t17">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
-            <next href="#t3" type="default"/>
+            <a href="#t6" type="default"/>
+            <next href="#t17" type="default"/>
+        </topic>
+        <topic id="t17" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t5" type="default"/>
         </topic>
         <topic id="t6" listen="false">
             <action index="1">
@@ -58,11 +66,18 @@
         </topic>
         <!-- どこでを入れる -->
         <topic id="t7" listen="true">
-            <a href="#t8" type="default"/>
-            <a href="#t3">
+            <a href="#t18">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
-            <next href="#t3" type="default"/>
+            <a href="#t8" type="default"/>
+            <next href="#t18" type="default"/>
+        </topic>
+        <topic id="t18" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t7" type="default"/>
         </topic>
         <topic id="t8" listen="false">
             <action index="1">
@@ -75,11 +90,18 @@
         </topic>
         <!-- だれがを入れる -->
         <topic id="t9" listen="true">
-            <a href="#t10" type="default"/>
-            <a href="#t3">
+            <a href="#t19">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
-            <next href="#t3" type="default"/>
+            <a href="#t10" type="default"/>
+            <next href="#t19" type="default"/>
+        </topic>
+        <topic id="t19" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t9" type="default"/>
         </topic>
         <topic id="t10" listen="false">
             <action index="1">
@@ -92,11 +114,18 @@
         </topic>
         <!-- 何をを入れる -->
         <topic id="t11" listen="true">
-            <a href="#t12" type="default"/>
-            <a href="#t3">
+            <a href="#t20">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
-            <next href="#t3" type="default"/>
+            <a href="#t12" type="default"/>
+            <next href="#t20" type="default"/>
+        </topic>
+        <topic id="t20" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t11" type="default"/>
         </topic>
         <topic id="t12" listen="false">
             <action index="1">
@@ -109,11 +138,18 @@
         </topic>
         <!-- どうしたを入れる -->
         <topic id="t14" listen="true">
-            <a href="#t15" type="default"/>
-            <a href="#t3">
+            <a href="#t21">
                 <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
             </a>
-            <next href="#t3" type="default"/>
+            <a href="#t15" type="default"/>
+            <next href="#t21" type="default"/>
+        </topic>
+        <topic id="t21" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t14" type="default"/>
         </topic>
         <topic id="t15" listen="false">
             <action index="1">
