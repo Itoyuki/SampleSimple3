@@ -75,6 +75,10 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_VIEW_RESULT = "view_result";
     /**
+     * function：音声UIコールバック用定義
+     */
+    public static final String FUNC_VIEW_MEMORIZE = "view_memorize";
+    /**
      * accost名：accostテスト発話実行.
      */
     public static final String ACC_ACCOST =  ScenarioDefinitions.PACKAGE + ".accost.t1";
@@ -98,6 +102,10 @@ public class ScenarioDefinitions {
      * resolve variable：アプリで変数解決する値.
      */
     public static final String RESOLVE_JAVA_VALUE = ScenarioDefinitions.PACKAGE + ":java_side_value";
+    /**
+     * resolve variable：アプリで変数解決する値.
+     */
+    public static final String RESOLVE_MEMORIZE_RESULT = ScenarioDefinitions.PACKAGE + "memorize_result";
     /**
      * data key：シナリオ起動時情報1.
      */
