@@ -53,6 +53,7 @@ public class MainActivityVoiceUIListener implements VoiceUIListener {
     public void onVoiceUIResolveVariable(List<VoiceUIVariable> variables) {
         //アプリ側での変数解決用コールバック(シナリオ側にパッケージ名をつけた変数を書いておくと呼び出される).
         Log.v(TAG, "onVoiceUIResolveVariable");
+        /*
         for (VoiceUIVariable variable : variables) {
             String key = variable.getName();
             Log.d(TAG, "onVoiceUIResolveVariable: " + key + ":" + variable.getStringValue());
@@ -60,7 +61,17 @@ public class MainActivityVoiceUIListener implements VoiceUIListener {
                 variable.setStringValue("java");
             }
         }
+        */
+        mCallback.onExecCommand(ScenarioDefinitions.FUNC_VIEW_MEMORIZE,variables);
     }
+
+    /*
+    @Override
+    public void onVoiceUIViewMemorize(List<VoiceUIVariable> variables) {
+        Log.v(TAG, "onVoiceUIViewMemorize");
+        mCallback.onExecCommand(ScenarioDefinitions.COMMAND_VIEW_MEMORIZE, variables);
+    }
+    */
 
     @Override
     public void onVoiceUIActionCancelled(List<VoiceUIVariable> variables) {

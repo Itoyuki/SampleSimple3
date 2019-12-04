@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +58,11 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
      * データベース用
      */
     private TestOpenHelper dbhelper;
+
+    /**
+     * 暗記内容発話用文字列.
+     */
+    private String mSpeachText = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,6 +191,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
 
         //Scene有効化.
         VoiceUIManagerUtil.enableScene(mVoiceUIManager, ScenarioDefinitions.SCENE_COMMON);
+
+        //発話を実行
+        /*if (!mSpeachText.equals("")){
+            VoiceUIVariableUtil.VoiceUIVariableListHelper helper = new VoiceUIVariableUtil.VoiceUIVariableListHelper().addAccost(ScenarioDefinitions.ACC_MEMORIZE);
+            VoiceUIManagerUtil.updateAppInfo(mVoiceUIManager, helper.getVariableList(), true);
+        }*/
     }
 
     @Override
@@ -227,164 +239,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
     @Override
     public void onExecCommand(String command, List<VoiceUIVariable> variables) {
         Log.v(TAG, "onExecCommand() : " + command);
-
-        //final SQLiteDatabase sdb = dbhelper.getWritableDatabase();
-        //final SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
-        //final ContentValues values = new ContentValues();
-
-        //final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-        //final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
-        //final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
-        //final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
-        //final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
-        //final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
-
-        //final DataManagement management = new DataManagement();
-
         switch (command) {
             case ScenarioDefinitions.FUNC_END_APP:
                 finish();
                 break;
             case ScenarioDefinitions.FUNC_RECOG_TALK:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final DataManagement management = new DataManagement();
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!isFinishing()) {
-                            //final ContentValues values = new ContentValues();
-                            //values.put("EVENTNAME",eventname);
-                            //sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setEventname(eventname);
-                            /*
-                            final String[] columns = new String[]{"EVENTNAME"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                String moji1 = c.getString(c.getColumnIndex("EVENTNAME"));
-                                ((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ moji1);
-                            }
-                            */
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
-                            ((TextView) findViewById(R.id.recog_time_text)).setText("あああああ:" + ScenarioDefinitions.KEY_LVCSR_BASIC);
-                        }
-                    }
-                });
-                break;
-            case ScenarioDefinitions.FUNC_RECOG_TIME:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
-
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!isFinishing()) {
-                            //final ContentValues values = new ContentValues();
-                            //values.put("TIME",time);
-                            //sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setTime(time);
-                            /*
-                            final String[] columns = new String[]{"TIME"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                String moji2 = c.getString(c.getColumnIndex("TIME"));
-                                ((TextView) findViewById(R.id.recog_time_text)).setText("Lvcsr:"+ moji2);
-                            }
-                            */
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
-                            ((TextView) findViewById(R.id.recog_place_text)).setText("いいいいい:");
-                        }
-                    }
-                });
-                break;
-            case ScenarioDefinitions.FUNC_RECOG_PLACE:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!isFinishing()) {
-                            //final ContentValues values = new ContentValues();
-                            //values.put("PLACE",place);
-                            //sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setPlace(place);
-                            /*
-                            final String[] columns = new String[]{"PLACE"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                String moji3 = c.getString(c.getColumnIndex("PLACE"));
-                                ((TextView) findViewById(R.id.recog_place_text)).setText("Lvcsr:"+ moji3);
-                            }
-                            */
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
-                            ((TextView) findViewById(R.id.recog_people_text)).setText("ううううう:");
-                        }
-                    }
-                });
-                break;
-            case ScenarioDefinitions.FUNC_RECOG_PEOPLE:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!isFinishing()) {
-                            //final ContentValues values = new ContentValues();
-                            //values.put("PEOPLE",people);
-                            //sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setPeople(people);
-                            /*
-                            final String[] columns = new String[]{"PEOPLE"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                String moji4 = c.getString(c.getColumnIndex("PEOPLE"));
-                                ((TextView) findViewById(R.id.recog_people_text)).setText("Lvcsr:"+ moji4);
-                            }
-                            */
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
-                            ((TextView) findViewById(R.id.recog_object_text)).setText("えええええ:");
-                        }
-                    }
-                });
-                break;
-            case ScenarioDefinitions.FUNC_RECOG_OBJECT:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                //final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(!isFinishing()) {
-                            //final ContentValues values = new ContentValues();
-                            //values.put("OBJECT",object);
-                            //sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setObject(object);
-                            /*
-                            final String[] columns = new String[]{"OBJECT"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                String moji5 = c.getString(c.getColumnIndex("OBJECT"));
-                                ((TextView) findViewById(R.id.recog_object_text)).setText("Lvcsr:"+ moji5);
-                            }
-                            */
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
-                            ((TextView) findViewById(R.id.recog_event_text)).setText("おおおおお:");
-                        }
-                    }
-                });
-                break;
-            case ScenarioDefinitions.FUNC_RECOG_EVENT:
-                //final String lvcsr = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
                 final String eventname = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_BASIC);
-                final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
-                final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
-                final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
-                final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
-                final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -393,29 +253,103 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             ContentValues values = new ContentValues();
 
                             values.put("EVENTNAME",eventname);
-                            values.put("TIME",time);
-                            values.put("PLACE",place);
-                            values.put("PEOPLE",people);
-                            values.put("OBJECT",object);
-                            values.put("EVENT",event);
                             sdb.insert("talk", null, values);
-                            //final DataManagement management = new DataManagement();
-                            //management.setEvent(event);
-                            /*
-                            final String[] columns = new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"};
-                            Cursor c = sdbr.query("talk",columns,null,null,null,null,null);
-                            while (c.moveToNext()) {
-                                //String moji6 = c.getString(c.getColumnIndex("EVENT"));
-                                String moji1 = c.getString(c.getColumnIndex("TIME"));
-                                String moji2 = c.getString(c.getColumnIndex("PLACE"));
-                                String moji3 = c.getString(c.getColumnIndex("PEOPLE"));
-                                String moji4 = c.getString(c.getColumnIndex("OBJECT"));
-                                String moji5 = c.getString(c.getColumnIndex("EVENT"));
-                                ((TextView) findViewById(R.id.recog_place_text)).setText("Lvcsr:"+ moji1 + "に" + moji2 + "で" + moji3 + "が" + moji4 + "を" + moji5 + "。");
-                                //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ moji6);
-                            }*/
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_TIME:
+                final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
 
-                            //((TextView) findViewById(R.id.recog_text)).setText("Lvcsr:"+lvcsr);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("TIME",time);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_PLACE:
+                final String place = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PLACE);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("PLACE",place);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_PEOPLE:
+                final String people = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_PEOPLE);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("PEOPLE",people);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_OBJECT:
+                final String object = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_OBJECT);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("OBJECT",object);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_RECOG_EVENT:
+                final String event = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENT);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("EVENT",event);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
                         }
                     }
                 });
@@ -426,24 +360,6 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                     public void run() {
                         if(!isFinishing()) {
                             SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
-                            /*
-                            final DataManagement management = new DataManagement();
-                            //management.insertDB(sdb);
-                            final ContentValues values = new ContentValues();
-                            values.put("EVENTNAME",management.getEventname());
-                            values.put("TIME",management.getTime());
-                            values.put("PLACE",management.getPlace());
-                            values.put("PEOPLE",management.getPeople());
-                            values.put("OBJECT",management.getObject());
-                            values.put("EVENT",management.getEvent());
-                            sdb.insert("talk", null, values);
-                            */
-                            //management.pullDB(sdbr);
-                            //String learndata = management.pullDB(sdbr);
-                            //((TextView)findViewById(R.id.recog_eventname_text)).setText("Lvcsr:" + learndata);
-                            //final String[] columns = new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"};
-                            //String where = "EVENTNAME like ?";
-                            //String param = "%江戸時代%";
                             Cursor c = sdbr.query("talk",new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"},null,null,null,null,null);
                             c.moveToFirst();
                             StringBuilder stringBuilder = new StringBuilder();
@@ -460,33 +376,49 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                                 stringBuilder.append("。\n");
                                 c.moveToNext();
                             }
-                            /*while (c.moveToNext()) {
-                                stringBuilder.append(c.getString(c.getColumnIndex("TIME")));
-                                stringBuilder.append("に");
-                                stringBuilder.append(c.getString(c.getColumnIndex("PLACE")));
-                                stringBuilder.append("で");
-                                stringBuilder.append(c.getString(c.getColumnIndex("PEOPLE")));
-                                stringBuilder.append("が");
-                                stringBuilder.append(c.getString(c.getColumnIndex("OBJECT")));
-                                stringBuilder.append("を");
-                                stringBuilder.append(c.getString(c.getColumnIndex("EVENT")));
-                                //String moji1 = c.getString(c.getColumnIndex("TIME"));
-                                //String moji2 = c.getString(c.getColumnIndex("PLACE"));
-                                //String moji3 = c.getString(c.getColumnIndex("PEOPLE"));
-                                //String moji4 = c.getString(c.getColumnIndex("OBJECT"));
-                                //String moji5 = c.getString(c.getColumnIndex("EVENT"));
-                                //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ moji1 + "に" + moji2 + "で" + moji3 + "が" + moji4 + "を" + moji5 + "。");
-                            }*/
                             c.close();
                             ((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ stringBuilder.toString());
-                            //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:1603年に江戸で徳川家康が江戸幕府を開いた。");
-                            //((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:江戸で徳川家康が江戸幕府を開いたのは何年でしょうか。");
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
-                            ((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
+                            //((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
                         }
                     }
                 });
                 break;
+            case ScenarioDefinitions.FUNC_VIEW_MEMORIZE:
+
+                SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                Log.d(TAG, "recodeCount: " + recodeCount);
+                Cursor cursor = sdbr.query("talk", new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + recodeCount}, null, null, null);
+                cursor.moveToFirst();
+                StringBuilder sBuilder = new StringBuilder();
+                for (int i = 0; i < cursor.getCount(); i++){
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("TIME")));
+                    sBuilder.append("に");
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("PLACE")));
+                    sBuilder.append("で");
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("PEOPLE")));
+                    sBuilder.append("が");
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("OBJECT")));
+                    sBuilder.append("を");
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("EVENT")));
+                    cursor.moveToNext();
+                }
+                cursor.close();
+                mSpeachText = sBuilder.toString();
+                Log.d(TAG, mSpeachText);
+                for (VoiceUIVariable variable : variables){
+                    String key = variable.getName();
+                    Log.d(TAG, "onVoiceUIViewMemorize: " + key + ":" + variable.getStringValue());
+                    variable.setStringValue(mSpeachText);
+                    if (!mSpeachText.equals("")){
+                        VoiceUIVariableUtil.VoiceUIVariableListHelper helper = new VoiceUIVariableUtil.VoiceUIVariableListHelper().addAccost(ScenarioDefinitions.ACC_MEMORIZE);
+                        VoiceUIManagerUtil.updateAppInfo(mVoiceUIManager, helper.getVariableList(), true);
+                    }
+                    Log.d(TAG, "if抜け");
+                    //発話後はリセット
+                    mSpeachText = "";
+                }
             default:
                 break;
         }
