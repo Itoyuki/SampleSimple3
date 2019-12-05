@@ -79,6 +79,26 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_VIEW_MEMORIZE = "view_memorize";
     /**
+     * function：”いつ”について出題する
+     */
+    public static final String FUNC_QUESTION_TIME = "question_time";
+    /**
+     * function：”どこで”について出題する
+     */
+    public static final String FUNC_QUESTION_PLACE = "question_place";
+    /**
+     * function：”だれが”について出題する
+     */
+    public static final String FUNC_QUESTION_PEOPLE = "question_people";
+    /**
+     * function：”なにを”について出題する
+     */
+    public static final String FUNC_QUESTION_OBJECT = "question_object";
+    /**
+     * function：”どうした”について出題する
+     */
+    public static final String FUNC_QUESTION_EVENT = "question_event";
+    /**
      * accost名：accostテスト発話実行.
      */
     public static final String ACC_ACCOST =  ScenarioDefinitions.PACKAGE + ".accost.t1";
@@ -86,6 +106,10 @@ public class ScenarioDefinitions {
      * 暗記項目発話実行.
      */
     public static final String ACC_MEMORIZE =  ScenarioDefinitions.PACKAGE + ".accost.t2";
+    /**
+     * 問題発話実行
+     */
+    public static final String ACC_QUESTION = ScenarioDefinitions.PACKAGE + ".accost.question";
     /**
      * accost名：resolveテスト発話実行.
      */
@@ -102,10 +126,6 @@ public class ScenarioDefinitions {
      * resolve variable：アプリで変数解決する値.
      */
     public static final String RESOLVE_JAVA_VALUE = ScenarioDefinitions.PACKAGE + ":java_side_value";
-    /**
-     * resolve variable：アプリで変数解決する値.
-     */
-    public static final String RESOLVE_MEMORIZE_RESULT = ScenarioDefinitions.PACKAGE + "memorize_result";
     /**
      * data key：シナリオ起動時情報1.
      */
@@ -138,6 +158,18 @@ public class ScenarioDefinitions {
      * data key：どうした
      */
     public static final String KEY_LVCSR_EVENT = "Lvcsr_Event";
+    /**
+     * 暗記項目データ
+     */
+    public static final String MEM_P_MEMORIZE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".memorize";
+    /**
+     * 問題文「いつ」
+     */
+    public static final String DATA_QUESTION_TIME = ScenarioDefinitions.PACKAGE + ".qTime";
+    /**
+     * 解答「いつ」
+     */
+    public static final String DATA_ANSWER_TIME = ScenarioDefinitions.PACKAGE + ".aTime";
     /**
      * memory_p：時.
      */

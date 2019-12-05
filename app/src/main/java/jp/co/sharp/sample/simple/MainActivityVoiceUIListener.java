@@ -1,5 +1,6 @@
 package jp.co.sharp.sample.simple;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
@@ -53,16 +54,16 @@ public class MainActivityVoiceUIListener implements VoiceUIListener {
     public void onVoiceUIResolveVariable(List<VoiceUIVariable> variables) {
         //アプリ側での変数解決用コールバック(シナリオ側にパッケージ名をつけた変数を書いておくと呼び出される).
         Log.v(TAG, "onVoiceUIResolveVariable");
-        /*
         for (VoiceUIVariable variable : variables) {
             String key = variable.getName();
             Log.d(TAG, "onVoiceUIResolveVariable: " + key + ":" + variable.getStringValue());
             if (ScenarioDefinitions.RESOLVE_JAVA_VALUE.equals(key)) {
                 variable.setStringValue("java");
+            /*}else if (ScenarioDefinitions.DATA_MEMORIZE.equals(key)){
+                variable.setStringValue();*/
             }
         }
-        */
-        mCallback.onExecCommand(ScenarioDefinitions.FUNC_VIEW_MEMORIZE,variables);
+        //mCallback.onExecCommand(ScenarioDefinitions.FUNC_VIEW_MEMORIZE,variables);
     }
 
     /*
