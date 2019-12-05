@@ -165,11 +165,43 @@ public class ScenarioDefinitions {
     /**
      * 問題文「いつ」
      */
-    public static final String DATA_QUESTION_TIME = ScenarioDefinitions.PACKAGE + ".qTime";
+    public static final String MEM_P_QUESTION_TIME = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qTime";
     /**
      * 解答「いつ」
      */
-    public static final String DATA_ANSWER_TIME = ScenarioDefinitions.PACKAGE + ".aTime";
+    public static final String MEM_P_ANSWER_TIME = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aTime";
+    /**
+     * 問題文「どこで」
+     */
+    public static final String MEM_P_QUESTION_PLACE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qPlace";
+    /**
+     * 解答「どこで」
+     */
+    public static final String MEM_P_ANSWER_PLACE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aPlace";
+    /**
+     * 問題文「だれが」
+     */
+    public static final String MEM_P_QUESTION_PEOPLE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qPeople";
+    /**
+     * 解答「だれが」
+     */
+    public static final String MEM_P_ANSWER_PEOPLE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aPeople";
+    /**
+     * 問題文「なにを」
+     */
+    public static final String MEM_P_QUESTION_OBJECT = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qObject";
+    /**
+     * 解答「なにを」
+     */
+    public static final String MEM_P_ANSWER_OBJECT = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aObject";
+    /**
+     * 問題文「どうした」
+     */
+    public static final String MEM_P_QUESTION_EVENT = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qEvent";
+    /**
+     * 解答「どうした」
+     */
+    public static final String MEM_P_ANSWER_EVENT = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aEvent";
     /**
      * memory_p：時.
      */
