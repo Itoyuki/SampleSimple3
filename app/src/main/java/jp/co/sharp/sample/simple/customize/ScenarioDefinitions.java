@@ -159,17 +159,21 @@ public class ScenarioDefinitions {
      */
     public static final String KEY_LVCSR_EVENT = "Lvcsr_Event";
     /**
+     * 出題モード
+     */
+    public static final String MEM_P_MODE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".mode";
+    /**
      * 暗記項目データ
      */
     public static final String MEM_P_MEMORIZE = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".memorize";
     /**
      * 問題文「いつ」
      */
-    public static final String MEM_P_QUESTION_TIME = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".qTime";
+    public static final String MEM_P_QUESTION = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".question";
     /**
      * 解答「いつ」
      */
-    public static final String MEM_P_ANSWER_TIME = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".aTime";
+    public static final String MEM_P_ANSWER = ScenarioDefinitions.TAG_MEMORY_PERMANENT + ScenarioDefinitions.PACKAGE + ".answer";
     /**
      * 問題文「どこで」
      */

@@ -11,21 +11,114 @@
     <body>
         <topic id="t1" listen="false">
             <action index="1">
-                <memory type="permanent" key="jp.co.sharp.sample.simple.loop" value="0"/>
+                <memory type="permanent" key="jp.co.sharp.sample.simple_loop" value="0"/>
             </action>
             <next href="jp_co_sharp_sample_simple_question.hvml#t6" type="default"/>
         </topic>
         <topic id="t2" listen="false">
             <action index="1">
-                <memory type="permanent" key="jp.co.sharp.sample.simple.loop" value="(${memory_p:loop} + 1)"/>
+                <memory type="permanent" key="jp.co.sharp.sample.simple_loop" value="(${memory_p:jp.co.sharp.sample.simple_loop} + 1)"/>
             </action>
             <next href="#t3" type="default"/>
         </topic>
         <topic id="t3" listen="false">
             <action index="1">
-                <speech>${memory_p:jp.co.sharp.sample.simple.qTime}</speech>
+                <speech>${memory_p:jp.co.sharp.sample.simple.question}</speech>
                 <behavior id="assign" type="normal"/>
             </action>
+            <next href="#t4" type="default"/>
+        </topic>
+        <topic id="t4" listen="true">
+            <a href="#t5">
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+            </a>
+            <a href="#t6" type="default"/>
+            <next href="#t5" type="default"/>
+        </topic>
+        <topic id="t5" listen="false">
+            <action index="1">
+                <speech>ごめんね。よく聞き取れなかったから、もう一回言ってね</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t4" type="default"/>
+        </topic>
+        <topic id="t6" listen="false">
+            <rule>
+                <condition case_id="c1">${Lvcsr:Basic} eq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
+                <condition case_id="c2">${Lvcsr:Basic} neq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
+            </rule>
+            <case id="c1">
+                <action index="1">
+                    <speech>正解！</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+                <next href="#t7" type="default"/>
+            </case>
+            <case id="c2">
+                <action index="1">
+                    <speech>違うよ</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+                <next href="#t3" type="default"/>
+            </case>
+        </topic>
+        <topic id="t7" listen="false">
+            <rule>
+                <condition case_id="loop1">${memory_p:jp.co.sharp.sample.simple_loop} lt 10</condition>
+                <condition case_id="loop2">${memory_p:jp.co.sharp.sample.simple_loop} ge 10</condition>
+            </rule>
+            <case id="loop1">
+                <action index="1">
+                    <speech>次の問題だよ</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+                <next href="#t8" type="default"/>
+            </case>
+            <case id="loop2">
+                <action index="1">
+                    <speech>問題はこれで全部だよ。</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+            </case>
+        </topic>
+        <topic id="t8" listen="false">
+            <rule>
+                <condition case_id="next1">${memory_p:jp.co.sharp.sample.simple.mode} eq いつ</condition>
+                <condition case_id="next2">${memory_p:jp.co.sharp.sample.simple.mode} eq どこで</condition>
+                <condition case_id="next3">${memory_p:jp.co.sharp.sample.simple.mode} eq だれが</condition>
+                <condition case_id="next4">${memory_p:jp.co.sharp.sample.simple.mode} eq なにを</condition>
+                <condition case_id="next5">${memory_p:jp.co.sharp.sample.simple.mode} eq どうした</condition>
+            </rule>
+            <case id="next1">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_time" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
+            <case id="next2">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_place" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
+            <case id="next3">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_people" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
+            <case id="next4">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_object" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
+            <case id="next5">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_event" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
         </topic>
     </body>
 </hvml>
