@@ -64,8 +64,8 @@
         </topic>
         <topic id="t7" listen="false">
             <rule>
-                <condition case_id="loop1">${memory_p:jp.co.sharp.sample.simple_loop} lt 10</condition>
-                <condition case_id="loop2">${memory_p:jp.co.sharp.sample.simple_loop} ge 10</condition>
+                <condition case_id="loop1">${memory_p:jp.co.sharp.sample.simple_loop} lt 3</condition>
+                <condition case_id="loop2">${memory_p:jp.co.sharp.sample.simple_loop} ge 3</condition>
             </rule>
             <case id="loop1">
                 <action index="1">
