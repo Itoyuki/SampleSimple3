@@ -440,7 +440,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCount);
                 Random random = new Random();
-                int randValue = random.nextInt((int)recodeCount);
+                int randValue = random.nextInt((int)recodeCount) + 1;
+                Log.d(TAG, "randValue: " + randValue);
                 Cursor cursor = sdbr.query("talk", new String[]{"PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValue}, null, null, null);
                 cursor.moveToFirst();
                 StringBuilder sBuilder = new StringBuilder();
@@ -493,7 +494,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 long recodeCountPlace = DatabaseUtils.queryNumEntries(sdbrPlace, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCountPlace);
                 Random randomPlace = new Random();
-                int randValuePlace = randomPlace.nextInt((int)recodeCountPlace);
+                int randValuePlace = randomPlace.nextInt((int)recodeCountPlace) + 1;
                 Cursor cursorPlace = sdbrPlace.query("talk", new String[]{"TIME","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValuePlace}, null, null, null);
                 cursorPlace.moveToFirst();
                 StringBuilder sBuilderPlace = new StringBuilder();
@@ -546,7 +547,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 long recodeCountPeople = DatabaseUtils.queryNumEntries(sdbrPeople, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCountPeople);
                 Random randomPeople = new Random();
-                int randValuePeople = randomPeople.nextInt((int)recodeCountPeople);
+                int randValuePeople = randomPeople.nextInt((int)recodeCountPeople) + 1;
                 Cursor cursorPeople = sdbrPeople.query("talk", new String[]{"TIME","PLACE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValuePeople}, null, null, null);
                 cursorPeople.moveToFirst();
                 StringBuilder sBuilderPeople = new StringBuilder();
@@ -599,7 +600,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 long recodeCountObject = DatabaseUtils.queryNumEntries(sdbrObject, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCountObject);
                 Random randomObject = new Random();
-                int randValueObject = randomObject.nextInt((int)recodeCountObject);
+                int randValueObject = randomObject.nextInt((int)recodeCountObject) + 1;
                 Cursor cursorObject = sdbrObject.query("talk", new String[]{"TIME","PLACE","PEOPLE","EVENT"}, "_id = ?", new String[]{"" + randValueObject}, null, null, null);
                 cursorObject.moveToFirst();
                 StringBuilder sBuilderObject = new StringBuilder();
@@ -652,7 +653,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 long recodeCountEvent = DatabaseUtils.queryNumEntries(sdbrEvent, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCountEvent);
                 Random randomEvent = new Random();
-                int randValueEvent = randomEvent.nextInt((int)recodeCountEvent);
+                int randValueEvent = randomEvent.nextInt((int)recodeCountEvent) + 1;
                 Cursor cursorEvent = sdbrEvent.query("talk", new String[]{"TIME","PLACE","PEOPLE","OBJECT"}, "_id = ?", new String[]{"" + randValueEvent}, null, null, null);
                 cursorEvent.moveToFirst();
                 StringBuilder sBuilderEvent = new StringBuilder();

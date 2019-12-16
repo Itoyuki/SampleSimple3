@@ -48,8 +48,8 @@
             <rule>
                 <condition case_id="c1">${Lvcsr:Basic} eq いつ</condition>
                 <condition case_id="c2">${Lvcsr:Basic} eq どこで</condition>
-                <condition case_id="c3">${Lvcsr:Basic} eq だれが</condition>
-                <condition case_id="c4">${Lvcsr:Basic} eq なにを</condition>
+                <condition case_id="c3">${Lvcsr:Basic} eq 誰が</condition>
+                <condition case_id="c4">${Lvcsr:Basic} eq 何を</condition>
                 <condition case_id="c5">${Lvcsr:Basic} eq どうした</condition>
             </rule>
             <case id="c1">
