@@ -38,11 +38,24 @@
             <next href="#t3" type="default"/>
         </topic>
         <topic id="t5" listen="false">
-            <action index="1">
-                <speech>${Lvcsr:Basic}、についての問題を出すよ</speech>
-                <behavior id="assign" type="normal"/>
-            </action>
-            <next href="jp_co_sharp_sample_simple_judgment.hvml#t1" type="default"/>
+            <rule>
+                <condition case_id="case1">${Lvcsr:Basic} eq いつ</condition>
+                <condition case_id="case1">${Lvcsr:Basic} eq どこで</condition>
+                <condition case_id="case1">${Lvcsr:Basic} eq 誰が</condition>
+                <condition case_id="case1">${Lvcsr:Basic} eq 何を</condition>
+                <condition case_id="case1">${Lvcsr:Basic} eq どうした</condition>
+                <condition case_id="case2" priority="20">true</condition>
+            </rule>
+            <case id="case1">
+                <action index="1">
+                    <speech>${Lvcsr:Basic}、についての問題を出すよ</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+                <next href="jp_co_sharp_sample_simple_judgment.hvml#t1" type="default"/>
+            </case>
+            <case id="case2">
+                <next href="#t4" type="default"/>
+            </case>
         </topic>
         <topic id="t6" listen="false">
             <rule>

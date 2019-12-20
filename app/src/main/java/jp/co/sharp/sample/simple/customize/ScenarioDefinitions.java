@@ -51,6 +51,10 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_RECOG_TALK = "recog_talk";
     /**
+     * function：”できごと名”を再度入力
+     */
+    public static final String FUNC_RECOG_EVENTNAMEAGAIN = "recog_eventnameagain";
+    /**
      * function：”いつ”を通知する
      */
     public static final String FUNC_RECOG_TIME = "recog_time";
@@ -138,6 +142,10 @@ public class ScenarioDefinitions {
      * data key：大語彙認識文言.
      */
     public static final String KEY_LVCSR_BASIC = "Lvcsr_Basic";
+    /**
+     * data key：できごと名2回目以降
+     */
+    public static final String KEY_LVCSR_EVENTNAMEAGAIN = "Lvcsr_EventnameAgain";
     /**
      * data key：いつ
      */

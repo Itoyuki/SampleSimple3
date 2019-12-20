@@ -162,10 +162,39 @@
         </topic>
         <topic id="t16" listen="false">
             <action index="1">
-                <speech>喋った内容を、背中の画面に表示したよ。確認してみてね</speech>
                 <behavior id="assign" type="normal"/>
-                <control function="view_result" target="jp.co.sharp.sample.simple"/>
+                <control function="view_memorize" target="jp.co.sharp.sample.simple"/>
             </action>
+        </topic>
+        <topic id="t22" listen="false">
+            <action index="1">
+                <speech>もう一回教えてね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t23" type="default"/>
+        </topic>
+        <topic id="t23" listen="true">
+            <a href="#t24">
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+            </a>
+            <a href="#t25" type="default"/>
+            <next href="#t24" type="default"/>
+        </topic>
+        <topic id="t24" listen="false">
+            <action index="1">
+                <speech>よくわからなかったよ。もう一回言ってね。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t18" type="default"/>
+        </topic>
+        <topic id="t25" listen="false">
+            <action index="1">
+                <behavior id="assign" type="normal"/>
+                <control function="recog_eventnameagain" target="jp.co.sharp.sample.simple">
+                    <data key="Lvcsr_EventnameAgain" value="${Lvcsr:Basic}"/>
+                </control>
+            </action>
+            <next href="#t5" type="default"/>
         </topic>
     </body>
 </hvml>

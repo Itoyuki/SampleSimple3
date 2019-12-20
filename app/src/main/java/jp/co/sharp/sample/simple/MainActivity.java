@@ -263,9 +263,27 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                     }
                 });
                 break;
+            case ScenarioDefinitions.FUNC_RECOG_EVENTNAMEAGAIN:
+                final String eventnameAgain = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_EVENTNAMEAGAIN);
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!isFinishing()) {
+                            SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
+                            long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
+                            Log.d(TAG, "recodeCount: " + recodeCount);
+                            String id = String.valueOf(recodeCount);
+
+                            SQLiteDatabase sdb = dbhelper.getWritableDatabase();
+                            ContentValues values = new ContentValues();
+                            values.put("EVENTNAME",eventnameAgain);
+                            sdb.update("talk", values, "_id = ?", new String[]{id});
+                        }
+                    }
+                });
+                break;
             case ScenarioDefinitions.FUNC_RECOG_TIME:
                 final String time = VoiceUIVariableUtil.getVariableData(variables, ScenarioDefinitions.KEY_LVCSR_TIME);
-
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {

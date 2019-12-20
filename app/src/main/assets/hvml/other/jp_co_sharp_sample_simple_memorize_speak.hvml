@@ -14,6 +14,51 @@
                 <speech>暗記した内容は、${memory_p:jp.co.sharp.sample.simple.memorize}だよ</speech>
                 <behavior id="assign" type="normal"/>
             </action>
+            <next href="#t2" type="default"/>
+        </topic>
+        <topic id="t2" listen="false">
+            <action index="1">
+                <speech>この内容で覚えてもいい？</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t3" type="default"/>
+        </topic>
+        <topic dict="Reply" id="t3" listen="true">
+            <a href="#t4">
+                <situation trigger="user-word">${Local_Reply:GLOBAL_REPLY_YES} neq null</situation>
+            </a>
+            <a href="#t6">
+                <situation trigger="user-word">${Local_Reply:GLOBAL_REPLY_NO} neq null</situation>
+            </a>
+            <a href="#t7" type="default"/>
+            <next href="#t7" type="default"/>
+        </topic>
+        <topic id="t4" listen="false">
+            <action index="1">
+                <speech>${resolver:speech_ok(${resolver:ok_id})}</speech>
+                <behavior id="${resolver:motion_ok(${resolver:ok_id})}" type="normal"/>
+            </action>
+            <next href="#t5" type="default"/>
+        </topic>
+        <topic id="t5" listen="false">
+            <action index="1">
+                <speech>覚えたよ</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+        </topic>
+        <topic id="t6" listen="false">
+            <action index="1">
+                <speech>そっかー。</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="jp_co_sharp_sample_simple_talk.hvml#t22" type="default"/>
+        </topic>
+        <topic id="t7" listen="false">
+            <action index="1">
+                <speech>オッケー、か、ダメだよ、で答えてね</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t3" type="default"/>
         </topic>
     </body>
 </hvml>
