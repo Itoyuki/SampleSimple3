@@ -19,7 +19,7 @@
         </topic>
         <topic id="t2" listen="false">
             <action index="1">
-                <speech>サンプルアプリを終了するね</speech>
+                <speech>勉強アプリを終了するね</speech>
                 <behavior id="assign" type="normal"/>
                 <control function="end_app" target="jp.co.sharp.sample.simple"/>
             </action>

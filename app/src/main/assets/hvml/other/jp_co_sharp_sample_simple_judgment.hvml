@@ -30,7 +30,7 @@
         </topic>
         <topic id="t4" listen="true">
             <a href="#t5">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t6" type="default"/>
             <next href="#t5" type="default"/>
@@ -44,8 +44,8 @@
         </topic>
         <topic id="t6" listen="false">
             <rule>
-                <condition case_id="c1">${Lvcsr:Basic} eq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
-                <condition case_id="c2">${Lvcsr:Basic} neq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
+                <condition case_id="c1">${Lvcsr:Kana} eq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
+                <condition case_id="c2">${Lvcsr:Kana} neq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
             </rule>
             <case id="c1">
                 <action index="1">
@@ -76,19 +76,26 @@
             </case>
             <case id="loop2">
                 <action index="1">
-                    <speech>問題はこれで全部だよ。</speech>
+                    <speech>問題は、これで全部だよ</speech>
                     <behavior id="assign" type="normal"/>
                 </action>
             </case>
         </topic>
         <topic id="t8" listen="false">
             <rule>
+                <condition case_id="next0">${memory_p:jp.co.sharp.sample.simple.mode} eq できごと</condition>
                 <condition case_id="next1">${memory_p:jp.co.sharp.sample.simple.mode} eq いつ</condition>
                 <condition case_id="next2">${memory_p:jp.co.sharp.sample.simple.mode} eq どこで</condition>
                 <condition case_id="next3">${memory_p:jp.co.sharp.sample.simple.mode} eq だれが</condition>
                 <condition case_id="next4">${memory_p:jp.co.sharp.sample.simple.mode} eq なにを</condition>
                 <condition case_id="next5">${memory_p:jp.co.sharp.sample.simple.mode} eq どうした</condition>
             </rule>
+            <case id="next0">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_eventname" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
             <case id="next1">
                 <action index="1">
                     <behavior id="assign" type="normal"/>

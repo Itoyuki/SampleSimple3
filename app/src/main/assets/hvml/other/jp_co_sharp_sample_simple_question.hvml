@@ -18,7 +18,7 @@
         </topic>
         <topic id="t2" listen="false">
             <action index="1">
-                <speech>出してほしい問題を、「いつ」、「どこで」、「だれが」、「なにを」、「どうした」の中から選んでね</speech>
+                <speech>出してほしい問題を、「出来事の名前」、「いつ」、「どこで」、「だれが」、「なにを」、「どうした」の中から選んでね</speech>
                 <behavior id="assign" type="normal"/>
             </action>
             <next href="#t3" type="default"/>
@@ -39,6 +39,7 @@
         </topic>
         <topic id="t5" listen="false">
             <rule>
+                <condition case_id="case1">${Lvcsr:Basic} eq 出来事の名前</condition>
                 <condition case_id="case1">${Lvcsr:Basic} eq いつ</condition>
                 <condition case_id="case1">${Lvcsr:Basic} eq どこで</condition>
                 <condition case_id="case1">${Lvcsr:Basic} eq 誰が</condition>
@@ -59,12 +60,19 @@
         </topic>
         <topic id="t6" listen="false">
             <rule>
+                <condition case_id="c0">${Lvcsr:Basic} eq 出来事の名前</condition>
                 <condition case_id="c1">${Lvcsr:Basic} eq いつ</condition>
                 <condition case_id="c2">${Lvcsr:Basic} eq どこで</condition>
                 <condition case_id="c3">${Lvcsr:Basic} eq 誰が</condition>
                 <condition case_id="c4">${Lvcsr:Basic} eq 何を</condition>
                 <condition case_id="c5">${Lvcsr:Basic} eq どうした</condition>
             </rule>
+            <case id="c0">
+                <action index="1">
+                    <behavior id="assign" type="normal"/>
+                    <control function="question_eventname" target="jp.co.sharp.sample.simple"/>
+                </action>
+            </case>
             <case id="c1">
                 <action index="1">
                     <behavior id="assign" type="normal"/>

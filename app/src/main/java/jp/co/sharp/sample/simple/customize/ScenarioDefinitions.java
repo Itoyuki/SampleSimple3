@@ -83,6 +83,10 @@ public class ScenarioDefinitions {
      */
     public static final String FUNC_VIEW_MEMORIZE = "view_memorize";
     /**
+     * function：”できごとの名称”について出題する
+     */
+    public static final String FUNC_QUESTION_EVENTNAME = "question_eventname";
+    /**
      * function：”いつ”について出題する
      */
     public static final String FUNC_QUESTION_TIME = "question_time";

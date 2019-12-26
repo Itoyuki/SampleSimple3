@@ -7,8 +7,8 @@
         <version value="1.0"/>
         <tool_version>1.00</tool_version>
         <!--(ロボホン名)、App_name(を)起動(して)-->
-        <situation priority="78" topic_id="t1" trigger="user-word">${Local:WORD_APPLICATION} eq さんぷるあぷり</situation>
-        <situation priority="78" topic_id="t1" trigger="user-word">${Local:WORD_APPLICATION_FREEWORD} eq さんぷるあぷりしよう</situation>
+        <situation priority="78" topic_id="t1" trigger="user-word">${Local:WORD_APPLICATION} eq べんきょうあぷり</situation>
+        <situation priority="78" topic_id="t1" trigger="user-word">${Local:WORD_APPLICATION_FREEWORD} eq べんきょうあぷりしよう</situation>
     </head>
     <body>
         <topic id="t1" listen="false">
@@ -20,7 +20,7 @@
         </topic>
         <topic id="t2" listen="false">
             <action index="1">
-                <speech>サンプルアプリを起動するね</speech>
+                <speech>勉強アプリを起動するね</speech>
                 <behavior id="assign" type="normal"/>
                 <control function="start_activity" target="home">
                     <data key="package_name" value="jp.co.sharp.sample.simple"/>

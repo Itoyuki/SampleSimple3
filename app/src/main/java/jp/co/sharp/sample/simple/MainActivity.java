@@ -383,10 +383,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                     public void run() {
                         if(!isFinishing()) {
                             SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
-                            Cursor c = sdbr.query("talk",new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"},null,null,null,null,null);
+                            Cursor c = sdbr.query("talk",new String[]{"EVENTNAME","TIME","PLACE","PEOPLE","OBJECT","EVENT"},null,null,null,null,null);
                             c.moveToFirst();
                             StringBuilder stringBuilder = new StringBuilder();
                             for (int i = 0; i < c.getCount(); i++){
+                                stringBuilder.append(c.getString(c.getColumnIndex("EVENTNAME")));
+                                stringBuilder.append(":");
                                 stringBuilder.append(c.getString(c.getColumnIndex("TIME")));
                                 stringBuilder.append("に");
                                 stringBuilder.append(c.getString(c.getColumnIndex("PLACE")));
@@ -400,7 +402,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                                 c.moveToNext();
                             }
                             c.close();
-                            ((TextView) findViewById(R.id.recog_eventname_text)).setText("Lvcsr:"+ stringBuilder.toString());
+                            ((TextView) findViewById(R.id.recog_eventname_text)).setText(stringBuilder.toString());
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
                         }
@@ -415,10 +417,12 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
                             long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                             Log.d(TAG, "recodeCount: " + recodeCount);
-                            Cursor cursor = sdbr.query("talk", new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + recodeCount}, null, null, null);
+                            Cursor cursor = sdbr.query("talk", new String[]{"EVENTNAME","TIME","PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + recodeCount}, null, null, null);
                             cursor.moveToFirst();
                             StringBuilder sBuilder = new StringBuilder();
                             for (int i = 0; i < cursor.getCount(); i++){
+                                sBuilder.append(cursor.getString(cursor.getColumnIndex("EVENTNAME")));
+                                sBuilder.append("、");
                                 sBuilder.append(cursor.getString(cursor.getColumnIndex("TIME")));
                                 sBuilder.append("に");
                                 sBuilder.append(cursor.getString(cursor.getColumnIndex("PLACE")));
@@ -448,22 +452,23 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                         }
                     }
                 });
-
                 break;
-            case ScenarioDefinitions.FUNC_QUESTION_TIME:
+            case ScenarioDefinitions.FUNC_QUESTION_EVENTNAME:
                 Log.d(TAG, "caseの中");
                 Log.d(TAG, "isisFinish");
-                VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_MODE, "いつ");
+                VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_MODE, "できごと");
                 SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
                 long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                 Log.d(TAG, "recodeCount: " + recodeCount);
                 Random random = new Random();
                 int randValue = random.nextInt((int)recodeCount) + 1;
                 Log.d(TAG, "randValue: " + randValue);
-                Cursor cursor = sdbr.query("talk", new String[]{"PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValue}, null, null, null);
+                Cursor cursor = sdbr.query("talk", new String[]{"TIME","PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValue}, null, null, null);
                 cursor.moveToFirst();
                 StringBuilder sBuilder = new StringBuilder();
                 for (int i = 0; i < cursor.getCount(); i++){
+                    sBuilder.append(cursor.getString(cursor.getColumnIndex("TIME")));
+                    sBuilder.append("に、");
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("PLACE")));
                     sBuilder.append("で、");
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("PEOPLE")));
@@ -471,21 +476,77 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("OBJECT")));
                     sBuilder.append("を");
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("EVENT")));
-                    sBuilder.append("のは、いつですか？");
+                    sBuilder.append("。この出来事を、何と言いますか？");
                     cursor.moveToNext();
                 }
                 cursor.close();
                 mSpeachText = sBuilder.toString();
                 Log.d(TAG, mSpeachText);
-                Cursor cAnswer = sdbr.query("talk", new String[]{"TIME"}, "_id = ?", new String[]{"" + randValue}, null, null, null);
+                Cursor cAnswer = sdbr.query("talk", new String[]{"EVENTNAME"}, "_id = ?", new String[]{"" + randValue}, null, null, null);
                 cAnswer.moveToFirst();
                 StringBuilder sAnswer = new StringBuilder();
                 for (int i = 0; i < cAnswer.getCount(); i++){
-                    sAnswer.append(cAnswer.getString(cAnswer.getColumnIndex("TIME")));
+                    sAnswer.append(cAnswer.getString(cAnswer.getColumnIndex("EVENTNAME")));
                     cAnswer.moveToNext();
                 }
                 cAnswer.close();
                 mAnswerText = sAnswer.toString();
+                Log.d(TAG, mAnswerText);
+                VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_ANSWER, mAnswerText);
+
+                VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_QUESTION, mSpeachText);
+                if (mVoiceUIManager != null && !mSpeachText.equals("")){
+                    VoiceUIVariableUtil.VoiceUIVariableListHelper helper = new VoiceUIVariableUtil.VoiceUIVariableListHelper().addAccost(ScenarioDefinitions.ACC_QUESTION);
+                    VoiceUIManagerUtil.updateAppInfo(mVoiceUIManager, helper.getVariableList(), true);
+                }
+                //発話後はリセット
+                mSpeachText = "";
+                mAnswerText = "";
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isFinishing()){
+
+                        }
+                    }
+                });
+                break;
+            case ScenarioDefinitions.FUNC_QUESTION_TIME:
+                Log.d(TAG, "caseの中");
+                Log.d(TAG, "isisFinish");
+                VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_MODE, "いつ");
+                SQLiteDatabase sdbrTime = dbhelper.getReadableDatabase();
+                long recodeCountTime = DatabaseUtils.queryNumEntries(sdbrTime, "talk");
+                Log.d(TAG, "recodeCount: " + recodeCountTime);
+                Random randomTime = new Random();
+                int randValueTime = randomTime.nextInt((int)recodeCountTime) + 1;
+                Log.d(TAG, "randValue: " + randValueTime);
+                Cursor cursorTime = sdbrTime.query("talk", new String[]{"PLACE","PEOPLE","OBJECT","EVENT"}, "_id = ?", new String[]{"" + randValueTime}, null, null, null);
+                cursorTime.moveToFirst();
+                StringBuilder sBuilderTime = new StringBuilder();
+                for (int i = 0; i < cursorTime.getCount(); i++){
+                    sBuilderTime.append(cursorTime.getString(cursorTime.getColumnIndex("PLACE")));
+                    sBuilderTime.append("で、");
+                    sBuilderTime.append(cursorTime.getString(cursorTime.getColumnIndex("PEOPLE")));
+                    sBuilderTime.append("が");
+                    sBuilderTime.append(cursorTime.getString(cursorTime.getColumnIndex("OBJECT")));
+                    sBuilderTime.append("を");
+                    sBuilderTime.append(cursorTime.getString(cursorTime.getColumnIndex("EVENT")));
+                    sBuilderTime.append("のは、いつですか？");
+                    cursorTime.moveToNext();
+                }
+                cursorTime.close();
+                mSpeachText = sBuilderTime.toString();
+                Log.d(TAG, mSpeachText);
+                Cursor cAnswerTime = sdbrTime.query("talk", new String[]{"TIME"}, "_id = ?", new String[]{"" + randValueTime}, null, null, null);
+                cAnswerTime.moveToFirst();
+                StringBuilder sAnswerTime = new StringBuilder();
+                for (int i = 0; i < cAnswerTime.getCount(); i++){
+                    sAnswerTime.append(cAnswerTime.getString(cAnswerTime.getColumnIndex("TIME")));
+                    cAnswerTime.moveToNext();
+                }
+                cAnswerTime.close();
+                mAnswerText = sAnswerTime.toString();
                 Log.d(TAG, mAnswerText);
                 VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_ANSWER, mAnswerText);
 

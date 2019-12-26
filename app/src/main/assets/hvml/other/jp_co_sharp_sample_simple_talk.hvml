@@ -6,12 +6,16 @@
         <scene value="jp.co.sharp.sample.simple.scene_common"/>
         <version value="1.0"/>
         <tool_version>1.00</tool_version>
-        <situation priority="75" topic_id="t1" trigger="user-word">シャベルヨ near ${Lvcsr:Kana}</situation>
+        <situation priority="75" topic_id="t1" trigger="user-word">アンキスルヨ near ${Lvcsr:Kana}</situation>
     </head>
     <body>
         <topic id="t1" listen="false">
             <action index="1">
-                <speech>出来事の名前、年号、場所、人物、何を、どうした、について順番に教えてね。</speech>
+                <speech>${resolver:speech_ok(${resolver:ok_id})}</speech>
+                <behavior id="${resolver:motion_ok(${resolver:ok_id})}" type="normal"/>
+            </action>
+            <action index="2">
+                <speech>出来事の名前、年号、場所、人物、何を、どうした、について順番に教えてね</speech>
                 <behavior id="assign" type="normal"/>
             </action>
             <next href="#t2" type="default"/>
@@ -19,7 +23,7 @@
         <!-- できごと名を入れる -->
         <topic id="t2" listen="true">
             <a href="#t3">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t4" type="default"/>
             <next href="#t3" type="default"/>
@@ -35,7 +39,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_talk" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_Basic" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_Basic" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t5" type="default"/>
@@ -43,7 +47,7 @@
         <!-- いつを入れる -->
         <topic id="t5" listen="true">
             <a href="#t17">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t6" type="default"/>
             <next href="#t17" type="default"/>
@@ -59,7 +63,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_time" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_Time" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_Time" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t7" type="default"/>
@@ -67,7 +71,7 @@
         <!-- どこでを入れる -->
         <topic id="t7" listen="true">
             <a href="#t18">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t8" type="default"/>
             <next href="#t18" type="default"/>
@@ -83,7 +87,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_place" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_Place" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_Place" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t9" type="default"/>
@@ -91,7 +95,7 @@
         <!-- だれがを入れる -->
         <topic id="t9" listen="true">
             <a href="#t19">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t10" type="default"/>
             <next href="#t19" type="default"/>
@@ -107,7 +111,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_people" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_People" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_People" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t11" type="default"/>
@@ -115,7 +119,7 @@
         <!-- 何をを入れる -->
         <topic id="t11" listen="true">
             <a href="#t20">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t12" type="default"/>
             <next href="#t20" type="default"/>
@@ -131,7 +135,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_object" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_Object" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_Object" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t14" type="default"/>
@@ -139,7 +143,7 @@
         <!-- どうしたを入れる -->
         <topic id="t14" listen="true">
             <a href="#t21">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t15" type="default"/>
             <next href="#t21" type="default"/>
@@ -155,7 +159,7 @@
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_event" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_Event" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_Event" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t16" type="default"/>
@@ -175,7 +179,7 @@
         </topic>
         <topic id="t23" listen="true">
             <a href="#t24">
-                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Basic}</situation>
+                <situation trigger="user-word">ＶＯＩＣＥＰＦ＿ＥＲＲ  in ${Lvcsr:Kana}</situation>
             </a>
             <a href="#t25" type="default"/>
             <next href="#t24" type="default"/>
@@ -185,13 +189,13 @@
                 <speech>よくわからなかったよ。もう一回言ってね。</speech>
                 <behavior id="assign" type="normal"/>
             </action>
-            <next href="#t18" type="default"/>
+            <next href="#t23" type="default"/>
         </topic>
         <topic id="t25" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
                 <control function="recog_eventnameagain" target="jp.co.sharp.sample.simple">
-                    <data key="Lvcsr_EventnameAgain" value="${Lvcsr:Basic}"/>
+                    <data key="Lvcsr_EventnameAgain" value="${Lvcsr:Kana}"/>
                 </control>
             </action>
             <next href="#t5" type="default"/>
