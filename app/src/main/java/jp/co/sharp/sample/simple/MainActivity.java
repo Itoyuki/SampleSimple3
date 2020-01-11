@@ -58,7 +58,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
     /**
      * データベース用
      */
-    private TestOpenHelper dbhelper;
+    private SubOpenHelper dbhelper;
 
     /**
      * 暗記内容発話用文字列.
@@ -175,7 +175,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
         registerReceiver(mVoiceUIStartReceiver, filter);
 
         //DB生成
-        dbhelper = new TestOpenHelper(getApplicationContext());
+        dbhelper = new SubOpenHelper(getApplicationContext());
     }
 
     @Override
@@ -476,7 +476,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("OBJECT")));
                     sBuilder.append("を");
                     sBuilder.append(cursor.getString(cursor.getColumnIndex("EVENT")));
-                    sBuilder.append("。この出来事を、何と言いますか？");
+                    sBuilder.append("。これを、何と言いますか？");
                     cursor.moveToNext();
                 }
                 cursor.close();
