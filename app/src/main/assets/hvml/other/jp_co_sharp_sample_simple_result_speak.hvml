@@ -18,8 +18,8 @@
         </topic>
         <topic id="t2" listen="false">
             <action index="1">
-                <speech>この機能は使えないよ</speech>
                 <behavior id="assign" type="normal"/>
+                <control function="view_memorize" target="jp.co.sharp.sample.simple"/>
             </action>
         </topic>
     </body>

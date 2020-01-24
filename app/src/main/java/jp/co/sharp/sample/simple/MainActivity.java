@@ -381,7 +381,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if(!isFinishing()) {
+                        /*if(!isFinishing()) {
                             SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
                             Cursor c = sdbr.query("talk",new String[]{"EVENTNAME","TIME","PLACE","PEOPLE","OBJECT","EVENT"},null,null,null,null,null);
                             c.moveToFirst();
@@ -405,7 +405,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             ((TextView) findViewById(R.id.recog_eventname_text)).setText(stringBuilder.toString());
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
-                        }
+                        }*/
+                        ((TextView) findViewById(R.id.recog_eventname_text)).setText("オオシオヘイハチロウノラン、センハッピャクサンジュウナナネンにオオサカでオオシオヘイハチロウがハンランをオコシタ");
                     }
                 });
                 break;
@@ -438,6 +439,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             mSpeachText = sBuilder.toString();
                             Log.d(TAG, mSpeachText);
 
+                            ((TextView) findViewById(R.id.recog_eventname_text)).setText(mSpeachText);
+
                             VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_MEMORIZE, mSpeachText);
                             //if (mVoiceUIManager != null && !mSpeachText.equals("")){
                             if (mVoiceUIManager != null){
@@ -454,8 +457,6 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                 });
                 break;
             case ScenarioDefinitions.FUNC_QUESTION_EVENTNAME:
-                Log.d(TAG, "caseの中");
-                Log.d(TAG, "isisFinish");
                 VoiceUIVariableUtil.setVariableData(mVoiceUIManager, ScenarioDefinitions.MEM_P_MODE, "できごと");
                 SQLiteDatabase sdbr = dbhelper.getReadableDatabase();
                 long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
