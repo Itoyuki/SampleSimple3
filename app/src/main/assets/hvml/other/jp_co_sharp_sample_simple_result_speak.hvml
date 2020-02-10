@@ -19,7 +19,7 @@
         <topic id="t2" listen="false">
             <action index="1">
                 <behavior id="assign" type="normal"/>
-                <control function="view_memorize" target="jp.co.sharp.sample.simple"/>
+                <control function="view_result" target="jp.co.sharp.sample.simple"/>
             </action>
         </topic>
     </body>

@@ -406,7 +406,7 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
                             //((TextView) findViewById(R.id.recog_time_text)).setText("問題：1603年に江戸で江戸幕府を開いたのは、だれですか？");
                         }*/
-                        ((TextView) findViewById(R.id.recog_eventname_text)).setText("オオシオヘイハチロウノラン、センハッピャクサンジュウナナネンにオオサカでオオシオヘイハチロウがハンランをオコシタ");
+                        //((TextView) findViewById(R.id.recog_time_text)).setText("問題：江戸で徳川家康が江戸幕府を開いたのは、いつですか？");
                     }
                 });
                 break;
