@@ -44,9 +44,17 @@
         </topic>
         <topic id="t6" listen="false">
             <rule>
+                <condition case_id="c0">${Lvcsr:Kana} eq ワカリマセン</condition>
                 <condition case_id="c1">${Lvcsr:Kana} eq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
                 <condition case_id="c2">${Lvcsr:Kana} neq ${memory_p:jp.co.sharp.sample.simple.answer}</condition>
             </rule>
+            <case id="c0">
+                <action index="1">
+                    <speech>そっかー。</speech>
+                    <behavior id="assign" type="normal"/>
+                </action>
+                <next href="#t9" type="default"/>
+            </case>
             <case id="c1">
                 <action index="1">
                     <speech>正解！</speech>
@@ -61,6 +69,13 @@
                 </action>
                 <next href="#t3" type="default"/>
             </case>
+        </topic>
+        <topic id="t9" listen="false">
+            <action index="1">
+                <speech>正解は、${memory_p:jp.co.sharp.sample.simple.answer}だよ</speech>
+                <behavior id="assign" type="normal"/>
+            </action>
+            <next href="#t7" type="default"/>
         </topic>
         <topic id="t7" listen="false">
             <rule>

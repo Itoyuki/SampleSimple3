@@ -257,6 +257,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
 
+                            Log.d(TAG, "data: " + eventname);
+
                             values.put("EVENTNAME",eventname);
                             sdb.insert("talk", null, values);
                         }
@@ -273,6 +275,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
+
+                            Log.d(TAG, "data: " + eventnameAgain);
 
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
@@ -293,6 +297,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
 
+                            Log.d(TAG, "data: " + time);
+
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
                             values.put("TIME",time);
@@ -311,6 +317,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
+
+                            Log.d(TAG, "data: " + place);
 
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
@@ -331,6 +339,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
 
+                            Log.d(TAG, "data: " + people);
+
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
                             values.put("PEOPLE",people);
@@ -350,6 +360,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
 
+                            Log.d(TAG, "data: " + object);
+
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
                             values.put("OBJECT",object);
@@ -368,6 +380,8 @@ public class MainActivity extends Activity implements MainActivityVoiceUIListene
                             long recodeCount = DatabaseUtils.queryNumEntries(sdbr, "talk");
                             Log.d(TAG, "recodeCount: " + recodeCount);
                             String id = String.valueOf(recodeCount);
+
+                            Log.d(TAG, "data: " + event);
 
                             SQLiteDatabase sdb = dbhelper.getWritableDatabase();
                             ContentValues values = new ContentValues();
